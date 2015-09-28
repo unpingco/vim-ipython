@@ -96,6 +96,7 @@ noremap  <Plug>(IPython-RunFile)            :python run_this_file()<CR>
 noremap  <Plug>(IPython-RunLine)            :python run_this_line()<CR>
 noremap  <Plug>(IPython-RunLines)           :python run_these_lines()<CR>
 noremap  <Plug>(IPython-OpenPyDoc)          :python get_doc_buffer()<CR>
+noremap  <Plug>(IPython-RunVisual)          :python run_this_selection()<CR>
 noremap  <Plug>(IPython-UpdateShell)        :python if update_subchannel_msgs(force=True): echo("vim-ipython shell updated",'Operator')<CR>
 noremap  <Plug>(IPython-ToggleReselect)     :python toggle_reselect()<CR>
 "noremap  <Plug>(IPython-StartDebugging)     :python send('%pdb')<CR>
@@ -113,8 +114,8 @@ if g:ipy_perform_mappings != 0
     map  <buffer> <silent> <F5>           <Plug>(IPython-RunFile)
     map  <buffer> <silent> <S-F5>         <Plug>(IPython-RunLine)
     map  <buffer> <silent> <F9>           <Plug>(IPython-RunLines)
-    map  <buffer> <silent> <LocalLeader>d <Plug>(IPython-OpenPyDoc)
-    map  <buffer> <silent> <LocalLeader>s <Plug>(IPython-UpdateShell)
+    map  <buffer> <silent> <LocalLeader>l <Plug>(IPython-OpenPyDoc)
+    map  <buffer> <silent> <LocalLeader>s <Plug>(IPython-RunVisual)
     map  <buffer> <silent> <S-F9>         <Plug>(IPython-ToggleReselect)
     "map  <buffer> <silent> <C-F6>         <Plug>(IPython-StartDebugging)
     "map  <buffer> <silent> <F6>           <Plug>(IPython-BreakpointSet)

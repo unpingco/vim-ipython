@@ -142,7 +142,10 @@ def km_from_string(s=''):
                 p = p.lstrip().rstrip() # profile part of the string
                 fullpath = find_connection_file(k,p)
             else:
-                fullpath = find_connection_file(s.lstrip().rstrip())
+                try:
+                    fullpath = find_connection_file(r'C:\Users\jhunpingco\AppData\Roaming\jupyter\runtime\kernel-*.json')
+                except IOError:
+                    fullpath = find_connection_file(s.lstrip().rstrip())
         except IOError as e:
             echo(":IPython " + s + " failed", "Info")
             echo("^-- failed '" + s + "' not found", "Error")
@@ -510,6 +513,14 @@ def with_subchannel(f,*args):
 def run_this_file():
     msg_id = send('%%run %s %s' % (run_flags, repr(vim.current.buffer.name),))
     print_prompt("In[]: %%run %s %s" % (run_flags, repr(vim.current.buffer.name)),msg_id)
+
+@with_subchannel
+def run_this_selection(dedent=False):
+   line = vim.eval('@*')
+   if dedent:
+      line = line.lstrip()
+   msg_id = send(line)
+   print_prompt(line, msg_id)
 
 @with_subchannel
 def run_this_line(dedent=False):
